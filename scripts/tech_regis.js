@@ -20,5 +20,17 @@ window.onload = function(e) {
                                                         }
                                         )
                             }
+                
+function regis_tech()
+{
+    tech.push({
+                'uid':localStorage.getItem('userId'),
+                'techName':$('#nameInput').val(),
+                'position':$('#position').val(),
+                'staffId':$('#staffId').val(),
+                'tel':$('#telInput').val()
+    })
+   
+}
 
 
