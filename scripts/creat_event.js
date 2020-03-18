@@ -1,17 +1,21 @@
 var fb = firebase.database().ref('event')
 
 fb.on('value',function(snapshot){                         
-                                    document.getElementById("card_event_area").innerHTML = "";
                                     if(snapshot.val() !== null)
                                     {
                                       var data = snapshot.val()
-                                      var i = 0;
+                                      var i = 0
+                                      var data_for_tbl = []
                                       while(Object.keys(data)[i])
                                       {
-                                          console.log(Object.values(data)[i].moo)
-                                          render_event_card(Object.values(data)[i],Object.keys(data)[i],i);
+                                          var data_i = Object.values(data)[i]
+                                          data_i.key = Object.keys(data)[i]
+                                          data_for_tbl.push(data_i)
                                           i++;
                                       }
+                                      console.log(data_for_tbl)
+                                      var $table = $('#creat_event_tbl')
+                                      $table.bootstrapTable('refreshOptions', {data: data_for_tbl})
                                     }
                                   }
                                 
@@ -32,12 +36,10 @@ function creat_event()
     {
       fb.push({
         'place':$('#place').val(),
-        'moo':$('#moo').val(),
-        'tumbol':$('#tumbol').val(),
-        'aumper':$('#aumper').val(),
-        'province':$('#province').val(),
+        'addr':'ม.' + $('#moo').val() + ' ต.' + $('#tumbol').val() + ' อ.' + $('#aumper').val() + ' จ.' +$('#province').val(),
         'cause':$('#cause').val(),
         'cus_name':$('#cus_name').val(),
+        'tel':$('#tel').val(),
         'status':'P'
       })
       $('#place').val('')
@@ -47,6 +49,7 @@ function creat_event()
       $('#province').val('')
       $('#cause').val('')
       $('#cus_name').val('')
+      $('#tel').val('')
     }else
     {
       console.log('กรอกข้อมูลให้ครบซิ')
@@ -66,3 +69,37 @@ function change_status(key,status)
 {
   fb.child(key + '/status').set(status)
 }
+
+
+//////function for table
+function tbl_btn(value, row, index) 
+{
+  // return [
+  //     '<a class="btn btn-sm btn-outline-primary" href="#" title="Like" data-toggle="modal" onclick="query_job('+"'" + value + "'" +')"  data-target="#job_detail">',
+  //     '<i class="fa fa-eye"></i> เปลี่ยนสถานะ',
+  //     "</a>  "
+  //   ].join("")
+  return[
+          '<div class="btn-group-vertical">',
+            '<div class="btn-group dropleft">',
+              '<button id="change_status" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">',
+                'เปลี่ยนสถานะ',
+              '</button>',
+              '<div class="dropdown-menu" aria-labelledby="change_status">',
+                '<a class="dropdown-item" href="#" onclick="change_status(' + "'" + value+ "'" + ','+ "'P'" + ')">รอดำเนินการ</a>',
+                '<a class="dropdown-item" href="#" onclick="change_status(' + "'" + value+ "'" + ','+ "'I'" + ')">กำลังดำเนินการ</a>',
+                '<a class="dropdown-item" href="#" onclick="change_status(' + "'" + value+ "'" + ','+ "'F'" + ')">เสร็จงาน</a>',
+              '</div>',
+            '</div>',
+            '<div class="btn-group dropleft">',
+              '<button id="tech" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">',
+                'ส่งงานให้ช่าง',
+              '</button>',
+              '<div class="dropdown-menu" aria-labelledby="tech">',
+                '<a class="dropdown-item" href="#">นายนัทธพงศ์ เจริญกิจพิเชียร</a>',
+                '<a class="dropdown-item" href="#">นายปรัชญาจีนขาวขำ</a>',
+              '</div>',
+            '</div>',
+          '</div>'
+  ].join("")
+  }

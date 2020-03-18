@@ -1,0 +1,1 @@
+$('#head_text').html('EO_REPORT')

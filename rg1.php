@@ -69,6 +69,30 @@
   </div>
 
 </div>
+<div class="row mt-4">
+  <div class="col-lg-12">
+      <div class="card shadow" >
+        <div class="card-body">
+        <table 
+        id="event_tbl"
+        data-toggle="table"  
+        data-fixed-columns="true"
+        data-sticky-header="true"
+        data-search="true">
+        <thead>
+          <tr>
+            <th data-align="center" data-field="place" >สถานที่</th>
+            <th data-align="center" data-field="addr" >ที่อยู่</th>
+            <th data-align="center" data-field="cause">สาเหตุ</th>
+            <th data-align="center" data-field="cus_name" > ผู้แจ้ง</th>
+            <th data-align="center" data-field="status">สถานะ</th>
+          </tr>
+        </thead>
+      </table>
+        </div>
+      </div>
+    </div>
+</div>
 
 
 
