@@ -24,7 +24,7 @@ window.onload = function(e) {
 function regis_tech()
 {
     tech.orderByChild('staffId').equalTo($('#staffId').val()).once('value',function (snapshot){
-                                                                                                if(snapshot.val() != null)
+                                                                                                if(snapshot.val() == null)
                                                                                                 {
                                                                                                     tech.push({
                                                                                                         'uid':localStorage.getItem('userId'),
