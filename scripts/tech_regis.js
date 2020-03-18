@@ -23,14 +23,22 @@ window.onload = function(e) {
                 
 function regis_tech()
 {
-    tech.push({
-                'uid':localStorage.getItem('userId'),
-                'techName':$('#nameInput').val(),
-                'position':$('#position').val(),
-                'staffId':$('#staffId').val(),
-                'tel':$('#telInput').val()
-    })
-   
+    tech.orderByChild('uid').equalTo(data.context.userId).once('value',function (snapshot){
+                                                                                                if(snapshot.val() != null)
+                                                                                                {
+                                                                                                    tech.push({
+                                                                                                        'uid':localStorage.getItem('userId'),
+                                                                                                        'techName':$('#nameInput').val(),
+                                                                                                        'position':$('#position').val(),
+                                                                                                        'staffId':$('#staffId').val(),
+                                                                                                        'tel':$('#telInput').val()
+                                                                                                        })
+                                                                                                }
+                                                                                                else
+                                                                                                {
+                                                                                                    alert('มีแล้ว')
+                                                                                                }
+                                                                                            })
 }
 
 
