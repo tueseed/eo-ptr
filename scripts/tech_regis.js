@@ -23,7 +23,7 @@ window.onload = function(e) {
                 
 function regis_tech()
 {
-    tech.orderByChild('uid').equalTo(data.context.userId).once('value',function (snapshot){
+    tech.orderByChild('staffId').equalTo($('#staffId').val()).once('value',function (snapshot){
                                                                                                 if(snapshot.val() != null)
                                                                                                 {
                                                                                                     tech.push({
