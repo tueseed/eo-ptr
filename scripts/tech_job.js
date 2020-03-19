@@ -27,12 +27,12 @@ function change_tech_status()
     if(chek.checked == true )
     {
         console.log('on')
-        tech.orderByChild('uid').equalTo(localStorage.getItem('userId')).child(localStorage.getItem('userId') + '/status').set('off')
+        tech.orderByChild('uid').equalTo(localStorage.getItem('userId')).child('status').set('off')
     }
     else if(chek.checked == false)
     {
         console.log('off')
-        tech.orderByChild('uid').equalTo(localStorage.getItem('userId')).child(localStorage.getItem('userId') + '/status').set('off')
+        tech.orderByChild('uid').equalTo(localStorage.getItem('userId')).child('status').set('off')
     }
 }
 
