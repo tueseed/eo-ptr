@@ -33,7 +33,7 @@ function regis_tech()
                                                                                                         'staffId':$('#staffId').val(),
                                                                                                         'tel':$('#telInput').val()
                                                                                                         })
-                                                                                                    window.location.href = 'tech_job.php'
+                                                                                                    window.location.href = 'index.php?action=tech_job'
                                                                                                 }
                                                                                                 else
                                                                                                 {

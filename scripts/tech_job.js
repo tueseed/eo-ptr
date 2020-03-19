@@ -7,7 +7,6 @@ window.onload = function(e) {
     liff
         .getProfile()
         .then(function(profile){
-                                alert(profile)
                                 $('#uNameInput').html(profile.displayName)
                                 $('#profileImage').attr('src',profile.pictureUrl)
                                 }
@@ -15,7 +14,7 @@ window.onload = function(e) {
                                 tech.orderByChild('uid').equalTo(data.context.userId).once('value',function (snapshot){
                                                                                                                         if(snapshot.val() == null)
                                                                                                                         {
-                                                                                                                            window.location.href = 'tech_regis.php'
+                                                                                                                            window.location.href = 'index.php?action=tech_regis'
                                                                                                                         }
                                                                                                                         })
                             }
