@@ -7,3 +7,18 @@
         </div>
     </div>
 </div>
+
+<div class="row text-center">
+    <div class="col-sm-12">
+    <h4 class="font-weight-bold">สถานะการทำงาน<br/></h4>
+        <label class="switch">
+            <input type="checkbox" onclick="change_tech_status()" id="check1" checked>
+            <span class="slider round"></span>
+        </label>
+    </div>
+</div>
+
+
+
+
+
