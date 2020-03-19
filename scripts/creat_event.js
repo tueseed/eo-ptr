@@ -1,5 +1,7 @@
 var fb = firebase.database().ref('event')
+var tech = firebase.database().ref('tech')
 
+$('#head_text').html('ระบบบริหารจัดการงานแก้กระแสไฟฟ้าขัดข้อง-การไฟฟ้าส่วนภูมิภาคอำเภอโพธาราม')
 fb.on('value',function(snapshot){                         
                                     if(snapshot.val() !== null)
                                     {
@@ -13,7 +15,7 @@ fb.on('value',function(snapshot){
                                           data_for_tbl.push(data_i)
                                           i++;
                                       }
-                                      console.log(data_for_tbl)
+                                      
                                       var $table = $('#creat_event_tbl')
                                       $table.bootstrapTable('refreshOptions', {data: data_for_tbl})
                                     }
@@ -40,7 +42,8 @@ function creat_event()
         'cause':$('#cause').val(),
         'cus_name':$('#cus_name').val(),
         'tel':$('#tel').val(),
-        'status':'P'
+        'status':'P',
+        'tech':''
       })
       $('#place').val('')
       $('#moo').val('')
@@ -74,11 +77,20 @@ function change_status(key,status)
 //////function for table
 function tbl_btn(value, row, index) 
 {
-  // return [
-  //     '<a class="btn btn-sm btn-outline-primary" href="#" title="Like" data-toggle="modal" onclick="query_job('+"'" + value + "'" +')"  data-target="#job_detail">',
-  //     '<i class="fa fa-eye"></i> เปลี่ยนสถานะ',
-  //     "</a>  "
-  //   ].join("")
+  // var dropdown=''
+  // tech.orderByChild('status').equalTo('on').once('value',function(snapshot){
+  //                                     var data = snapshot.val()
+  //                                     $('#tech_dropdown'+value).empty()
+  //                                     var i = 0
+                                      
+  //                                     while(Object.keys(data)[i])
+  //                                     {
+  //                                       dropdown = '<a class="dropdown-item" href="#" onclick="send_job(' + "'" + value + "'" + ',' + "'" + Object.values(data)[i].techName + "'" + ',' + "'" + Object.values(data)[i].staffId + "'" + ')">'+Object.values(data)[i].techName+'</a>'
+  //                                       $('#tech_dropdown'+value).append(dropdown)
+  //                                       i++
+  //                                     } 
+                                      
+  //                                   })
   return[
           '<div class="btn-group-vertical">',
             '<div class="btn-group dropleft">',
@@ -86,20 +98,65 @@ function tbl_btn(value, row, index)
                 'เปลี่ยนสถานะ',
               '</button>',
               '<div class="dropdown-menu" aria-labelledby="change_status">',
-                '<a class="dropdown-item" href="#" onclick="change_status(' + "'" + value+ "'" + ','+ "'P'" + ')">รอดำเนินการ</a>',
-                '<a class="dropdown-item" href="#" onclick="change_status(' + "'" + value+ "'" + ','+ "'I'" + ')">กำลังดำเนินการ</a>',
-                '<a class="dropdown-item" href="#" onclick="change_status(' + "'" + value+ "'" + ','+ "'F'" + ')">เสร็จงาน</a>',
+                '<a class="dropdown-item" href="#" onclick="change_status(' + "'" + value + "'" + ','+ "'P'" + ')">รอดำเนินการ</a>',
+                '<a class="dropdown-item" href="#" onclick="change_status(' + "'" + value + "'" + ','+ "'I'" + ')">กำลังดำเนินการ</a>',
+                '<a class="dropdown-item" href="#" onclick="change_status(' + "'" + value + "'" + ','+ "'F'" + ')">เสร็จงาน</a>',
               '</div>',
             '</div>',
             '<div class="btn-group dropleft">',
-              '<button id="tech" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">',
+              '<button id="tech" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="render_drop(' + "'" + value + "'" +  ')">',
                 'ส่งงานให้ช่าง',
               '</button>',
-              '<div class="dropdown-menu" aria-labelledby="tech">',
-                '<a class="dropdown-item" href="#">นายนัทธพงศ์ เจริญกิจพิเชียร</a>',
-                '<a class="dropdown-item" href="#">นายปรัชญาจีนขาวขำ</a>',
+              '<div class="dropdown-menu" aria-labelledby="tech" id="tech_dropdown' + value + '">',
+        
               '</div>',
             '</div>',
           '</div>'
   ].join("")
+}
+
+function check_status(value, row, index)
+{
+  var status=''
+  var text_color = ''
+  if(value == 'P')
+  {
+    status = 'รอดำเนินการ'
+    text_color = 'text-danger'
   }
+  else if(value == 'I')
+  {
+    status = 'กำลังดำเนินการ'
+    text_color = 'text-warning'
+  }
+  else if (value == 'F')
+  {
+    status = 'จ่ายไฟแล้ว'
+    text_color = 'text-success'
+  }
+  return "<div class='text-center " + text_color + "'>" + status + "</div>";
+}
+
+
+function send_job(key,techname,techid)
+{
+  fb.child(key).update({'tech':techname}) 
+}
+
+function render_drop(key)
+{
+ var dropdown=''
+  tech.orderByChild('status').equalTo('on').on('value',function(snapshot){
+                                      var data = snapshot.val()
+                                      $('#tech_dropdown'+key).empty()
+                                      var i = 0
+                                      
+                                      while(Object.keys(data)[i])
+                                      {
+                                        dropdown = '<a class="dropdown-item" href="#" onclick="send_job(' + "'" + key + "'" + ',' + "'" + Object.values(data)[i].techName + "'" + ',' + "'" + Object.values(data)[i].staffId + "'" + ')">'+Object.values(data)[i].techName+'</a>'
+                                        $('#tech_dropdown'+key).append(dropdown)
+                                        i++
+                                      } 
+                                      
+                                    })
+}

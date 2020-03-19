@@ -1,6 +1,6 @@
 
   <div class="row">
-    <div class="col-lg-3" id="upload_card">
+    <div class="col-lg-2" id="upload_card">
         <div class="card shadow mt-1 bg-primary" >
             <div class="card-body">
                 <div class="row">
@@ -29,7 +29,7 @@
         </div>
     </div>
 
-  <div class="col-lg-9" id="card_event_area">
+  <div class="col-lg-10" id="card_event_area">
     <div class="card shadow" >
           <div class="card-body">
           <table 
@@ -45,16 +45,14 @@
               <th data-align="center" data-field="cause">สาเหตุ</th>
               <th data-align="center" data-field="cus_name" > ผู้แจ้ง</th>
               <th data-align="center" data-field="tel" > เบอร์ติดต่อ</th>
-              <th data-align="center" data-field="status">สถานะ</th>
-              <th data-align="center" data-field="key" data-formatter="tbl_btn">สถานะ</th>
+              <th data-align="center" data-field="status" data-formatter="check_status">สถานะ</th>
+              <th data-align="center" data-field="tech">ช่าง</th>
+              <th data-align="center" data-field="key" data-formatter="tbl_btn">ดำเนินการ</th>
             </tr>
           </thead>
         </table>
           </div>
         </div>
-  </div>
-  <div class="row">
-
   </div>
 </div>
 

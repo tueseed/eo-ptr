@@ -5,11 +5,11 @@ $('#head_text').html('EO_REPORT')
 window.onload = function(e) {
                                 liff.init(function(data) {
                                                             localStorage.setItem('userId', data.context.userId)
-                                                            //alert(data.context.userId)
+                                                        
                                 liff
                                     .getProfile()
                                     .then(function(profile){
-                                                            alert(profile)
+                                                           
                                                             $('#uNameInput').html(profile.displayName)
                                                             $('#profileImage').attr('src',profile.pictureUrl)
                                                             }
@@ -33,6 +33,7 @@ function regis_tech()
                                                                                                         'staffId':$('#staffId').val(),
                                                                                                         'tel':$('#telInput').val()
                                                                                                         })
+                                                                                                    window.location.href = 'tech_job.php'
                                                                                                 }
                                                                                                 else
                                                                                                 {
