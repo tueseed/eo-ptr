@@ -26,13 +26,19 @@ function change_tech_status()
 
     if(chek.checked == true )
     {
-        console.log('on')
-        tech.orderByChild('uid').equalTo(localStorage.getItem('userId')).child('status').set('off')
+        alert(localStorage.getItem('userId')+ 'on')
+        tech.orderByChild('uid').equalTo(localStorage.getItem('userId')).once('value',function (snapshot){
+            var data = snapshot.val()
+            tech.child(Object.keys(data)[0]+'/status').set('on')
+        })
     }
     else if(chek.checked == false)
     {
-        console.log('off')
-        tech.orderByChild('uid').equalTo(localStorage.getItem('userId')).child('status').set('off')
+        alert(localStorage.getItem('userId')+ 'off')
+        tech.orderByChild('uid').equalTo(localStorage.getItem('userId')).once('value',function (snapshot){
+            var data = snapshot.val()
+            tech.child(Object.keys(data)[0]+'/status').set('off')
+        })
     }
 }
 
