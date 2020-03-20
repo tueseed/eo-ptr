@@ -42,17 +42,17 @@ function change_tech_status()
 
 tech.orderByChild('uid').equalTo(localStorage.getItem('userId')).once('value',function (snapshot){
     var key_tech = Object.keys(snapshot.val())[0]
-    alert(key_tech)
+    
     var job = firebase.database().ref('tech/' + key_tech + '/job')
     job.once('value',function (job){
-        alert(job)
+        
         var job_get = job.val()
         var job_card = ''
         var i = 0
         $('#job_card').empty()
         while(Object.keys(job_get)[i])
         {
-            job_card = render_job_card()
+            job_card = render_job_card(Object.values(job_get)[i].job_place,Object.values(job_get)[i].job_key)
             $('#job_card').append(job_card)
             i++
         }
@@ -68,7 +68,7 @@ function render_job_card(job_name,job_key)
                     '<div class="card-body">',
                         '<div class="row">',
                             '<div class="col-sm-6">',
-                                '<h5 class="card-title text-white mt-2">บ้านหน้าเขา</h5>',
+                                '<h5 class="card-title text-white mt-2">'+job_name+'</h5>',
                             '</div>',
                             '<div class="col-sm-6">',
                                 '<div class="float-right">',
@@ -82,5 +82,5 @@ function render_job_card(job_name,job_key)
                     '</div>',
                 '</div>',
             '</div>'
-    ].join("x")
+    ].join("")
 }
