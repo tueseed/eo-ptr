@@ -61,7 +61,7 @@ tech.orderByChild('uid').equalTo(localStorage.getItem('userId')).on('value',func
 
 async function render_job_card(job_name,job_key)
 {
-    const job_status = ''
+    var job_status = ''
     await get_job_status()
         {
             fb.child(job_key).once('value',function(snapshot){
