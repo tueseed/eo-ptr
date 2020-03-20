@@ -33,7 +33,7 @@ fb.endAt().limitToLast(1).on('child_added', function(snapshot) {
 
 fb.on('child_changed', function(snapshot){
                                             var newrequest = snapshot.val()
-                                            console.log(newrequest)
+                                            
                                             var status_text = ''
                                             var status_color = ''
                                             if(newrequest.status == 'P')
