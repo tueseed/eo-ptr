@@ -51,8 +51,8 @@ tech.orderByChild('uid').equalTo(localStorage.getItem('userId')).on('value',func
         $('#job_card').empty()
         while(Object.keys(job_get)[i])
         {
-            job_card = render_job_card(Object.values(job_get)[i].job_place,Object.values(job_get)[i].job_key)
-            $('#job_card').append(job_card)
+            job_card = render_job_card(Object.values(job_get)[i].job_place,Object.values(job_get)[i].job_key).then($('#job_card').append(job_card))
+            
             i++
         }
     })
