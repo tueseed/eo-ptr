@@ -65,8 +65,8 @@ function render_job_card(job_name,job_key)
     fb.child(job_key).once('value',function(snapshot){
         var job_data = snapshot.val()
         job_status =  job_data.status
-        alert(job_status)
     })
+    alert(job_status)
     return[
             '<div class="col-sm-12">',
                 '<div class="card shadow mt-1" id="job_tech_card'+job_key+'">',
@@ -79,7 +79,7 @@ function render_job_card(job_name,job_key)
                                 '<div class="float-right">',
                                     '<button class="btn btn-primary"  id="save_btn" onclick="creat_event()">',
                                         '<i class="fas fa-check-circle" aria-hidden="true"></i>',
-                                        job_status,
+                                        'รับงาน',
                                     '</button>',
                                 '</div>',
                             '</div>',
