@@ -72,7 +72,7 @@ function render_job_card(job_name,job_key)
                             '</div>',
                             '<div class="col-sm-6">',
                                 '<div class="float-right">',
-                                    '<button class="btn btn-success"  id="save_btn" onclick="creat_event()">',
+                                    '<button class="btn btn-primary"  id="save_btn" onclick="creat_event()">',
                                         '<i class="fas fa-check-circle" aria-hidden="true"></i>',
                                         'รับงาน',
                                     '</button>',
@@ -101,7 +101,7 @@ fb.on('child_changed', function(snapshot){
                                                 alert(job_data.status)
                                                 $('#job_tech_card' + key)
                                                 .addClass("btn-warning")
-                                                .removeClass('btn-danger')
+                                                .removeClass('btn-success')
                                                 .removeClass("btn-danger")
                                             }else if(job_data.status == 'F')
                                             {
