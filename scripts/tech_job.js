@@ -87,25 +87,26 @@ function render_job_card(job_name,job_key)
 
 fb.on('child_changed', function(snapshot){
                                             var job_data = snapshot.val()
-                                            alert(snapshot.key)
-                                            if(Object.values(job_data).status == 'P')
+                                            var key = snapshot.key
+                                            
+                                            if(job_data.status == 'P')
                                             {
                                                 alert('F')
-                                                $('#job_tech_card' + Object.keys(job_data))
+                                                $('#job_tech_card' + key)
                                                 .addClass("btn-danger")
                                                 .removeClass('btn-warning')
                                                 .removeClass("btn-success")
-                                            }else if(Object.values(job_data).status == 'I')
+                                            }else if(job_data.statuss == 'I')
                                             {
                                                 alert('F')
-                                                $('#job_tech_card' + Object.keys(job_data))
+                                                $('#job_tech_card' + key)
                                                 .addClass("btn-warning")
                                                 .removeClass('btn-warning')
                                                 .removeClass("btn-danger")
-                                            }else if(Object.values(job_data).status == 'F')
+                                            }else if(job_data.status == 'F')
                                             {
                                                 alert('F')
-                                                $('#job_tech_card' + Object.keys(job_data))
+                                                $('#job_tech_card' + key)
                                                 .addClass("btn-success")
                                                 .removeClass('btn-warning')
                                                 .removeClass("btn-danger")
