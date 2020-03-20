@@ -67,7 +67,8 @@ function render_job_card(job_name,job_key)
         job_status =  job_data.status
         alert(job_status)
     }).then(function(){
-    return[
+        alert(job_status)
+        return[
             '<div class="col-sm-12">',
                 '<div class="card shadow mt-1" id="job_tech_card'+job_key+'">',
                     '<div class="card-body">',
