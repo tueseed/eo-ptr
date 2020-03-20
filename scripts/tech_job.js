@@ -101,7 +101,7 @@ fb.on('child_changed', function(snapshot){
                                                 alert(job_data.status)
                                                 $('#job_tech_card' + key)
                                                 .addClass("btn-warning")
-                                                .removeClass('btn-warning')
+                                                .removeClass('btn-danger')
                                                 .removeClass("btn-danger")
                                             }else if(job_data.status == 'F')
                                             {
