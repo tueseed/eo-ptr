@@ -40,7 +40,7 @@ function change_tech_status()
     }
 }
 
-tech.orderByChild('uid').equalTo(localStorage.getItem('userId')).once('value',function (snapshot){
+tech.orderByChild('uid').equalTo(localStorage.getItem('userId')).on('value',function (snapshot){
     var key_tech = Object.keys(snapshot.val())[0]
     
     var job = firebase.database().ref('tech/' + key_tech + '/job')
