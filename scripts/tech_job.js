@@ -51,7 +51,7 @@ tech.orderByChild('uid').equalTo(localStorage.getItem('userId')).on('value',func
         $('#job_card').empty()
         while(Object.keys(job_get)[i])
         {
-            job_card = render_job_card(Object.values(job_get)[i].job_place,Object.values(job_get)[i].job_key).then($('#job_card').append(job_card))
+            render_job_card(Object.values(job_get)[i].job_place,Object.values(job_get)[i].job_key)
             
             i++
         }
@@ -68,7 +68,7 @@ function render_job_card(job_name,job_key)
         alert(job_status)
     }).then(function(){
         alert(job_status)
-        return[
+        var job_card = [
             '<div class="col-sm-12">',
                 '<div class="card shadow mt-1" id="job_tech_card'+job_key+'">',
                     '<div class="card-body">',
@@ -89,6 +89,7 @@ function render_job_card(job_name,job_key)
                 '</div>',
             '</div>'
     ].join("")
+    $('#job_card').append(job_card)
 })
 }
 
