@@ -101,21 +101,18 @@ fb.on('child_changed', function(snapshot){
                                             
                                             if(job_data.status == 'P')
                                             {
-                                                alert(job_data.status)
                                                 $('#job_tech_card' + key)
                                                 .addClass("bg-danger")
                                                 .removeClass('bg-warning')
                                                 .removeClass("bg-success")
                                             }else if(job_data.status == 'I')
                                             {
-                                                alert(job_data.status)
                                                 $('#job_tech_card' + key)
                                                 .addClass("bg-warning")
                                                 .removeClass('bg-success')
                                                 .removeClass("bg-danger")
                                             }else if(job_data.status == 'F')
                                             {
-                                                alert(job_data.status)
                                                 $('#job_tech_card' + key)
                                                 .addClass("bg-success")
                                                 .removeClass('bg-warning')
