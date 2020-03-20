@@ -64,7 +64,7 @@ function render_job_card(job_name,job_key)
     
     return[
             '<div class="col-sm-12">',
-                '<div class="card shadow mt-1 bg-danger" id="job_tech_card"'+job_key+'>',
+                '<div class="card shadow mt-1 bg-danger" id="job_tech_card'+job_key+'">',
                     '<div class="card-body">',
                         '<div class="row">',
                             '<div class="col-sm-6">',
