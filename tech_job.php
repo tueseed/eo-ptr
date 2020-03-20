@@ -19,7 +19,7 @@
 </div>
 
 <div class="row" id="job_card">
-    <div class="col-sm-12">
+    <!-- <div class="col-sm-12">
         <div class="card shadow mt-1 bg-danger" >
             <div class="card-body">
                 <div class="row">
@@ -37,7 +37,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </div>
 
 
