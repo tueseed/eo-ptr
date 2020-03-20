@@ -18,6 +18,28 @@
     </div>
 </div>
 
+<div class="row" id="job_card">
+    <div class="col-sm-12">
+        <div class="card shadow mt-1 bg-danger" >
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                    <h5 class="card-title text-white mt-2">บ้านหน้าเขา</h5>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="float-right">
+                            <button class="btn btn-success"  id="save_btn" onclick="creat_event()">
+                                <i class="fas fa-check-circle" aria-hidden="true"></i>
+                                รับงาน
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 
