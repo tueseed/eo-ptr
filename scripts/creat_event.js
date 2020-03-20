@@ -71,6 +71,16 @@ function render_event_card(data,key,no)
 function change_status(key,status)
 {
   fb.child(key + '/status').set(status)
+  console.log(status)
+  if(status == 'F'){
+      tech.orderByChild('job_key').equalTo(key).on('value',function(snapshot){
+      var data = snapshot.val()
+      console.log(data)
+      tech.child(Object.keys(data)[0]+'/job').set('ว่าง')
+      //tech.child(Object.keys(data)[0]+'/job_key').set('ว่าง')
+  }
+  )}
+
 }
 
 
@@ -104,7 +114,7 @@ function tbl_btn(value, row, index)
               '</div>',
             '</div>',
             '<div class="btn-group dropleft">',
-              '<button id="tech" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="render_drop(' + "'" + value + "'" +  ')">',
+              '<button id="tech_btn'+value+'" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="render_drop(' + "'" + value + "'" + ',' + "'" + row.place + "'" +  ')">',
                 'ส่งงานให้ช่าง',
               '</button>',
               '<div class="dropdown-menu" aria-labelledby="tech" id="tech_dropdown' + value + '">',
@@ -138,12 +148,24 @@ function check_status(value, row, index)
 }
 
 
-function send_job(key,techname,techid)
+function send_job(key,techname,techid,place)
 {
-  fb.child(key).update({'tech':techname}) 
+  fb.child(key).update({'tech':techname})
+  tech.orderByChild('staffId').equalTo(techid).once('value',function (snapshot){
+    var data = snapshot.val()
+    console.log(Object.keys(data)[0])
+    firebase.database().ref('tech/' + Object.keys(data)[0]+'/job').orderByChild('job_key').equalTo(key).once('value',function(snapshot){
+      console.log(snapshot.val())
+      if(snapshot.val() == null)
+      {
+        tech.child(Object.keys(data)[0]+'/job').push({'job_place':place,'job_key':key})
+      }
+    })
+    // tech.child(Object.keys(data)[0]+'/job').push({'job_place':place,'job_key':key})
+}) 
 }
 
-function render_drop(key)
+function render_drop(key,place)
 {
  var dropdown=''
   tech.orderByChild('status').equalTo('on').on('value',function(snapshot){
@@ -153,7 +175,7 @@ function render_drop(key)
                                       
                                       while(Object.keys(data)[i])
                                       {
-                                        dropdown = '<a class="dropdown-item" href="#" onclick="send_job(' + "'" + key + "'" + ',' + "'" + Object.values(data)[i].techName + "'" + ',' + "'" + Object.values(data)[i].staffId + "'" + ')">'+Object.values(data)[i].techName+'</a>'
+                                        dropdown = '<a class="dropdown-item" href="#" onclick="send_job(' + "'" + key + "'" + ',' + "'" + Object.values(data)[i].techName + "'" + ',' + "'" + Object.values(data)[i].staffId + "'" + ',' + "'" + place + "'" +')">'+Object.values(data)[i].techName+'</a>'
                                         $('#tech_dropdown'+key).append(dropdown)
                                         i++
                                       } 

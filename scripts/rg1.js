@@ -1,4 +1,5 @@
 var fb = firebase.database().ref('event')
+var tech = firebase.database().ref('tech')
 fb.on('value',function(snapshot){                         
                                   var data = snapshot.val()
                                   var i =0
@@ -27,7 +28,7 @@ fb.on('value',function(snapshot){
 )
 
 fb.endAt().limitToLast(1).on('child_added', function(snapshot) {
-                                                                  console.log(snapshot.val())
+                                                                  // console.log(snapshot.val())
                                                                 })
 
 fb.on('child_changed', function(snapshot){
@@ -56,5 +57,43 @@ fb.on('child_changed', function(snapshot){
                                                     }
                                                     )
                                           })
+                                        
+tech.orderByChild('status').equalTo('on').on('value',function(snapshot){
+                                            var data = snapshot.val()
+                                            $('#tech_card').empty()
+                                            var card = ''
+                                            var i = 0
+                                            while(Object.keys(data)[i])
+                                            {
+                                              card = render_tech_card(Object.values(data)[i].techName,Object.values(data)[i].job)
+                                              $('#tech_card').append(card)
+                                              i++
+                                            } 
+                                            
+                                          })
+
+function render_tech_card(techname,job)
+{
+  console.log(job)
+  return[
+          '<div class="col-lg-3">',
+            '<div class="card shadow mt-1 bg-success" >',
+            '<div class="card-body">',
+              '<div class="row">',
+                '<div class="col-lg-12">',
+                  '<h5 class="card-title text-white mt-2">'+techname+'</h5>',
+                '</div>',
+              '</div>',
+              '<div class="row">',
+                '<div class="col-lg-12">',
+                  '<h5 class="card-title text-white mt-2">กำลังปฏิบัติงาน '+job+'</h5>',
+                '</div>',
+              '</div>',
+            '</div>',
+          '</div>',
+        '</div>'
+].join("")
+  
+}
                                           
                                           

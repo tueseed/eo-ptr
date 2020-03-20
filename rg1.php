@@ -69,6 +69,17 @@
   </div>
 
 </div>
+
+<div class="row mt-4">
+  <div class="col-lg-12">
+    <span class="text-success">พนักงานช่างทำหน้าที่แก้กระแสไฟฟ้าขัดข้อง</span>
+  </div>
+</div>
+
+<div class="row mt-4" id="tech_card">
+
+</div>
+
 <div class="row mt-4">
   <div class="col-lg-12">
       <div class="card shadow" >
