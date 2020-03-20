@@ -65,6 +65,7 @@ function render_job_card(job_name,job_key)
     fb.child(job_key).once('value',function(snapshot){
         var job_data = snapshot.val()
         job_status =  job_data.status
+        alert(job_status)
     })
     return[
             '<div class="col-sm-12">',
