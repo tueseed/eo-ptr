@@ -1,4 +1,5 @@
 var tech = firebase.database().ref('tech')
+var fb = firebase.database().ref('event')
 $('#head_text').html('EO_REPORT')
 window.onload = function(e) {
                                 liff.init(function(data) {
@@ -42,10 +43,8 @@ function change_tech_status()
 
 tech.orderByChild('uid').equalTo(localStorage.getItem('userId')).on('value',function (snapshot){
     var key_tech = Object.keys(snapshot.val())[0]
-    
     var job = firebase.database().ref('tech/' + key_tech + '/job')
     job.once('value',function (job){
-        
         var job_get = job.val()
         var job_card = ''
         var i = 0
@@ -62,9 +61,10 @@ tech.orderByChild('uid').equalTo(localStorage.getItem('userId')).on('value',func
 
 function render_job_card(job_name,job_key)
 {
+    
     return[
             '<div class="col-sm-12">',
-                '<div class="card shadow mt-1 bg-danger" >',
+                '<div class="card shadow mt-1 bg-danger" id="job_tech_card"'+job_key+'>',
                     '<div class="card-body">',
                         '<div class="row">',
                             '<div class="col-sm-6">',
@@ -84,3 +84,30 @@ function render_job_card(job_name,job_key)
             '</div>'
     ].join("")
 }
+
+fb.on('child_changed', function(snapshot){
+                                            var job_data = snapshot.val()
+                                            console.log('--')
+                                            if(Object.values(job_data)[0].status == 'P')
+                                            {
+                                                console.log('P')
+                                                $('#job_tech_card' + Object.keys(job_data)[0])
+                                                .addClass("btn-danger")
+                                                .removeClass('btn-warning')
+                                                .removeClass("btn-success")
+                                            }else if(Object.values(job_data)[0].status == 'I')
+                                            {
+                                                console.log('I')
+                                                $('#job_tech_card' + Object.keys(job_data)[0])
+                                                .addClass("btn-warning")
+                                                .removeClass('btn-warning')
+                                                .removeClass("btn-danger")
+                                            }else if(Object.values(job_data)[0].status == 'F')
+                                            {
+                                                console.log('F')
+                                                $('#job_tech_card' + Object.keys(job_data)[0])
+                                                .addClass("btn-success")
+                                                .removeClass('btn-warning')
+                                                .removeClass("btn-danger")
+                                            }
+                                        })
