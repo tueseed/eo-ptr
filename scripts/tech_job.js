@@ -87,7 +87,7 @@ function render_job_card(job_name,job_key)
 
 fb.on('child_changed', function(snapshot){
                                             var job_data = snapshot.val()
-                                            alert(job_data.key)
+                                            alert(snapshot.key)
                                             if(Object.values(job_data).status == 'P')
                                             {
                                                 alert('F')
