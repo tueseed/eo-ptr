@@ -61,7 +61,10 @@ tech.orderByChild('uid').equalTo(localStorage.getItem('userId')).on('value',func
 
 function render_job_card(job_name,job_key)
 {
-    
+    fb.child(job_key).once('value',function(snapshot){
+        var job_data = snapshot.val()
+        var job_status =  job_data.status
+    })
     return[
             '<div class="col-sm-12">',
                 '<div class="card shadow mt-1" id="job_tech_card'+job_key+'">',
@@ -74,7 +77,7 @@ function render_job_card(job_name,job_key)
                                 '<div class="float-right">',
                                     '<button class="btn btn-primary"  id="save_btn" onclick="creat_event()">',
                                         '<i class="fas fa-check-circle" aria-hidden="true"></i>',
-                                        'รับงาน',
+                                        'รับงาน'+job_status+'',
                                     '</button>',
                                 '</div>',
                             '</div>',
