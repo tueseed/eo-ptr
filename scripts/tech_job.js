@@ -66,8 +66,7 @@ function render_job_card(job_name,job_key)
         var job_data = snapshot.val()
         job_status =  job_data.status
         alert(job_status)
-    })
-    alert(job_status)
+    }).then(function(){
     return[
             '<div class="col-sm-12">',
                 '<div class="card shadow mt-1" id="job_tech_card'+job_key+'">',
@@ -89,6 +88,7 @@ function render_job_card(job_name,job_key)
                 '</div>',
             '</div>'
     ].join("")
+})
 }
 
 fb.on('child_changed', function(snapshot){
