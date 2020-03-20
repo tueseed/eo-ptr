@@ -59,37 +59,44 @@ tech.orderByChild('uid').equalTo(localStorage.getItem('userId')).on('value',func
 
 })
 
-function render_job_card(job_name,job_key)
+async function render_job_card(job_name,job_key)
 {
-    var job_status = ''
-    fb.child(job_key).once('value',function(snapshot){
-        var job_data = snapshot.val()
-        job_status =  job_data.status
-        alert(job_status)
-    }).then(function(){
-        alert(job_status)
-        return[
-            '<div class="col-sm-12">',
-                '<div class="card shadow mt-1" id="job_tech_card'+job_key+'">',
-                    '<div class="card-body">',
-                        '<div class="row">',
-                            '<div class="col-sm-6">',
-                                '<h5 class="card-title text-white mt-2">'+job_name+'</h5>',
-                            '</div>',
-                            '<div class="col-sm-6">',
-                                '<div class="float-right">',
-                                    '<button class="btn btn-primary"  id="save_btn" onclick="creat_event()">',
-                                        '<i class="fas fa-check-circle" aria-hidden="true"></i>',
-                                        'รับงาน',
-                                    '</button>',
+    const job_status = ''
+    await get_job_status()
+        {
+            fb.child(job_key).once('value',function(snapshot){
+                                                                var job_data = snapshot.val()
+                                                                job_status =  job_data.status
+                                                                alert(job_status)
+                                                            }
+                                            )  
+        }
+
+    await return_card()
+        {
+            alert(job_status)
+            return[
+                '<div class="col-sm-12">',
+                    '<div class="card shadow mt-1" id="job_tech_card'+job_key+'">',
+                        '<div class="card-body">',
+                            '<div class="row">',
+                                '<div class="col-sm-6">',
+                                    '<h5 class="card-title text-white mt-2">'+job_name+'</h5>',
+                                '</div>',
+                                '<div class="col-sm-6">',
+                                    '<div class="float-right">',
+                                        '<button class="btn btn-primary"  id="save_btn" onclick="creat_event()">',
+                                            '<i class="fas fa-check-circle" aria-hidden="true"></i>',
+                                            'รับงาน',
+                                        '</button>',
+                                    '</div>',
                                 '</div>',
                             '</div>',
                         '</div>',
                     '</div>',
-                '</div>',
-            '</div>'
-    ].join("")
-})
+                '</div>'
+        ].join("")
+        }
 }
 
 fb.on('child_changed', function(snapshot){
