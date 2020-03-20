@@ -87,22 +87,22 @@ function render_job_card(job_name,job_key)
 
 fb.on('child_changed', function(snapshot){
                                             var job_data = snapshot.val()
-                                            alert(Object.values(job_data)[0].status)
-                                            if(Object.values(job_data)[0].status == 'P')
+                                            alert(Object.values(job_data).status)
+                                            if(Object.values(job_data).status == 'P')
                                             {
                                                 alert('F')
                                                 $('#job_tech_card' + Object.keys(job_data))
                                                 .addClass("btn-danger")
                                                 .removeClass('btn-warning')
                                                 .removeClass("btn-success")
-                                            }else if(Object.values(job_data)[0].status == 'I')
+                                            }else if(Object.values(job_data).status == 'I')
                                             {
                                                 alert('F')
                                                 $('#job_tech_card' + Object.keys(job_data))
                                                 .addClass("btn-warning")
                                                 .removeClass('btn-warning')
                                                 .removeClass("btn-danger")
-                                            }else if(Object.values(job_data)[0].status == 'F')
+                                            }else if(Object.values(job_data).status == 'F')
                                             {
                                                 alert('F')
                                                 $('#job_tech_card' + Object.keys(job_data))
