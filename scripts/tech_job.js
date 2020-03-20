@@ -43,7 +43,7 @@ function change_tech_status()
 tech.orderByChild('uid').equalTo(localStorage.getItem('userId')).once('value',function (snapshot){
     var key_tech = Object.keys(snapshot.val())[0]
     alert(key_tech)
-    var job = firebase.database().ref('tech/' + key_tech + 'job')
+    var job = firebase.database().ref('tech/' + key_tech + '/job')
     job.once('value',function (job){
         alert(job)
         var job_get = job.val()
