@@ -61,9 +61,10 @@ tech.orderByChild('uid').equalTo(localStorage.getItem('userId')).on('value',func
 
 function render_job_card(job_name,job_key)
 {
+    var job_status = ''
     fb.child(job_key).once('value',function(snapshot){
         var job_data = snapshot.val()
-        var job_status =  job_data.status
+        job_status =  job_data.status
     })
     return[
             '<div class="col-sm-12">',
