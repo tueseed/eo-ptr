@@ -64,7 +64,7 @@ function render_job_card(job_name,job_key)
     
     return[
             '<div class="col-sm-12">',
-                '<div class="card shadow mt-1 bg-danger" id="job_tech_card'+job_key+'">',
+                '<div class="card shadow mt-1" id="job_tech_card'+job_key+'">',
                     '<div class="card-body">',
                         '<div class="row">',
                             '<div class="col-sm-6">',
@@ -96,7 +96,7 @@ fb.on('child_changed', function(snapshot){
                                                 .addClass("btn-danger")
                                                 .removeClass('btn-warning')
                                                 .removeClass("btn-success")
-                                            }else if(job_data.statuss == 'I')
+                                            }else if(job_data.status == 'I')
                                             {
                                                 alert(job_data.status)
                                                 $('#job_tech_card' + key)
