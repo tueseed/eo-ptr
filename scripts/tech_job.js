@@ -65,12 +65,14 @@ function render_job_card(job_name,job_key)
     fb.child(job_key).once('value',function(snapshot){
         var job_data = snapshot.val()
         job_status =  job_data.status
-        alert(job_status)
     }).then(function(){
-        alert(job_status)
+        var bg_card = ''
+        if(job_status == 'P'){bg_card = 'bg-danger'}
+        else if(job_status == 'I'){bg_card = 'bg-warning'}
+        else if(job_status == 'F'){bg_card = 'bg-success'}
         var job_card = [
             '<div class="col-sm-12">',
-                '<div class="card shadow mt-1" id="job_tech_card'+job_key+'">',
+                '<div class="card shadow mt-1 '+bg_card+'" id="job_tech_card'+job_key+'">',
                     '<div class="card-body">',
                         '<div class="row">',
                             '<div class="col-sm-6">',
@@ -101,22 +103,22 @@ fb.on('child_changed', function(snapshot){
                                             {
                                                 alert(job_data.status)
                                                 $('#job_tech_card' + key)
-                                                .addClass("btn-danger")
-                                                .removeClass('btn-warning')
-                                                .removeClass("btn-success")
+                                                .addClass("bg-danger")
+                                                .removeClass('bg-warning')
+                                                .removeClass("bg-success")
                                             }else if(job_data.status == 'I')
                                             {
                                                 alert(job_data.status)
                                                 $('#job_tech_card' + key)
-                                                .addClass("btn-warning")
-                                                .removeClass('btn-success')
-                                                .removeClass("btn-danger")
+                                                .addClass("bg-warning")
+                                                .removeClass('bg-success')
+                                                .removeClass("bg-danger")
                                             }else if(job_data.status == 'F')
                                             {
                                                 alert(job_data.status)
                                                 $('#job_tech_card' + key)
-                                                .addClass("btn-success")
-                                                .removeClass('btn-warning')
-                                                .removeClass("btn-danger")
+                                                .addClass("bg-success")
+                                                .removeClass('bg-warning')
+                                                .removeClass("bg-danger")
                                             }
                                         })
