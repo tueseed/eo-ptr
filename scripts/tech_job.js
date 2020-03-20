@@ -79,7 +79,7 @@ function render_job_card(job_name,job_key)
                                 '<div class="float-right">',
                                     '<button class="btn btn-primary"  id="save_btn" onclick="creat_event()">',
                                         '<i class="fas fa-check-circle" aria-hidden="true"></i>',
-                                        'รับงาน'+job_status+'',
+                                        job_statusdsad,
                                     '</button>',
                                 '</div>',
                             '</div>',
