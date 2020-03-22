@@ -95,7 +95,33 @@ async function render_job_card(job_name,job_key)
     // })
     const snapshot = await fb.child(job_key).once('value')
     const value = snapshot.val()
-    alert(value.staus)
+    alert(value.status)
+    var bg_card = ''
+    if(job_status == 'P'){bg_card = 'bg-danger'}
+    else if(job_status == 'I'){bg_card = 'bg-warning'}
+    else if(job_status == 'F'){bg_card = 'bg-success'}
+    var job_card = [
+            '<div class="col-sm-12">',
+                '<div class="card shadow mt-1 '+bg_card+'" id="job_tech_card'+job_key+'">',
+                    '<div class="card-body">',
+                        '<div class="row">',
+                            '<div class="col-sm-6">',
+                                '<h5 class="card-title text-white mt-2">'+job_name+'</h5>',
+                            '</div>',
+                            '<div class="col-sm-6">',
+                                '<div class="float-right">',
+                                    '<button class="btn btn-primary"  id="save_btn" onclick="creat_event()">',
+                                        '<i class="fas fa-check-circle" aria-hidden="true"></i>',
+                                        'รับงาน',
+                                    '</button>',
+                                '</div>',
+                            '</div>',
+                        '</div>',
+                    '</div>',
+                '</div>',
+            '</div>'
+    ].join("")
+    $('#job_card').append(job_card)
 
 }
 
