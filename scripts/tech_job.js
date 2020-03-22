@@ -95,7 +95,7 @@ async function render_job_card(job_name,job_key)
     // })
     const snapshot = await fb.child(job_key).once('value')
     const value = snapshot.val()
-    var job_status =  job_data.status
+    var job_status =  value.status
     alert(value.status)
     var bg_card = ''
     if(job_status == 'P'){bg_card = 'bg-danger'}
