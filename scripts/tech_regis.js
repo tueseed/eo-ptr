@@ -12,6 +12,7 @@ window.onload = function(e) {
                                                            
                                                             $('#uNameInput').html(profile.displayName)
                                                             $('#profileImage').attr('src',profile.pictureUrl)
+                                                            localStorage.setItem('display_url',profile.pictureUrl)
                                                             }
                                         )
                                                             //tech.orderByChild('uid').equalTo(data.context.userId).once('value',function (snapshot){
@@ -31,7 +32,8 @@ function regis_tech()
                                                                                                         'techName':$('#nameInput').val(),
                                                                                                         'position':$('#position').val(),
                                                                                                         'staffId':$('#staffId').val(),
-                                                                                                        'tel':$('#telInput').val()
+                                                                                                        'tel':$('#telInput').val(),
+                                                                                                        'display_url':localStorage.getItem('display_url')
                                                                                                         })
                                                                                                     window.location.href = 'index.php?action=tech_job'
                                                                                                 }

@@ -78,7 +78,7 @@ async function render_job_card(job_name,job_key)
                             '</div>',
                             '<div class="col-sm-6">',
                                 '<div class="float-right">',
-                                    '<button class="btn btn-primary"  id="save_btn" onclick="creat_event()">',
+                                    '<button class="btn btn-primary"  id="save_btn" onclick="get_job()">',
                                         '<i class="fas fa-check-circle" aria-hidden="true"></i>',
                                         'รับงาน',
                                     '</button>',
@@ -90,6 +90,11 @@ async function render_job_card(job_name,job_key)
             '</div>'
     ].join("")
     $('#job_card').append(job_card)
+}
+
+function get_job()
+{
+    
 }
 
 fb.on('child_changed', function(snapshot){

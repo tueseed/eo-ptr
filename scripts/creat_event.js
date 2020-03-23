@@ -109,6 +109,7 @@ function tbl_btn(value, row, index)
               '</button>',
               '<div class="dropdown-menu" aria-labelledby="change_status">',
                 '<a class="dropdown-item" href="#" onclick="change_status(' + "'" + value + "'" + ','+ "'P'" + ')">รอดำเนินการ</a>',
+                '<a class="dropdown-item" href="#" onclick="change_status(' + "'" + value + "'" + ','+ "'S'" + ')">จ่ายงานให้ช่าง</a>',
                 '<a class="dropdown-item" href="#" onclick="change_status(' + "'" + value + "'" + ','+ "'I'" + ')">กำลังดำเนินการ</a>',
                 '<a class="dropdown-item" href="#" onclick="change_status(' + "'" + value + "'" + ','+ "'F'" + ')">เสร็จงาน</a>',
               '</div>',
@@ -134,6 +135,11 @@ function check_status(value, row, index)
     status = 'รอดำเนินการ'
     text_color = 'text-danger'
   }
+  else if(value == 'S')
+  {
+    status = 'จ่ายงานให้ช่าง'
+    text_color = 'text-info'
+  }
   else if(value == 'I')
   {
     status = 'กำลังดำเนินการ'
@@ -150,7 +156,7 @@ function check_status(value, row, index)
 
 function send_job(key,techname,techid,place)
 {
-  fb.child(key).update({'tech':techname})
+  fb.child(key).update({'status':'S','tech':techname})
   tech.orderByChild('staffId').equalTo(techid).once('value',function (snapshot){
     var data = snapshot.val()
     console.log(Object.keys(data)[0])

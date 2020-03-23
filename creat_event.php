@@ -1,6 +1,6 @@
 
   <div class="row">
-    <div class="col-lg-2" id="upload_card">
+    <div class="col-lg-3" id="upload_card">
         <div class="card shadow mt-1 bg-primary" >
             <div class="card-body">
                 <div class="row">
@@ -29,7 +29,7 @@
         </div>
     </div>
 
-  <div class="col-lg-10" id="card_event_area">
+  <div class="col-lg-9" id="card_event_area">
     <div class="card shadow" >
           <div class="card-body">
           <table 
