@@ -32,6 +32,7 @@ function regis_tech()
                                                                                                         'techName':$('#nameInput').val(),
                                                                                                         'position':$('#position').val(),
                                                                                                         'staffId':$('#staffId').val(),
+                                                                                                        'status':'on',
                                                                                                         'tel':$('#telInput').val(),
                                                                                                         'display_url':localStorage.getItem('display_url')
                                                                                                         })
