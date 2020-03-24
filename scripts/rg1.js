@@ -1,5 +1,6 @@
 var fb = firebase.database().ref('event')
 var tech = firebase.database().ref('tech')
+var msg = firebase.database().ref('message')
 fb.on('value',function(snapshot){                         
                                   var data = snapshot.val()
                                   var i =0
@@ -95,6 +96,47 @@ function render_tech_card(techname,job)
         '</div>'
 ].join("")
   
+}
+
+msg.on('value',function(snapshot){
+  var comment = snapshot.val()
+  if(comment !== null)
+  {
+      var i = 0
+      $('#msg_area').html('') 
+      while(Object.keys(comment)[i])
+      {
+        var msg_card = render_msg(Object.values(comment)[i])
+        i++
+      }
+      $('#msg_area').append(msg_card) 
+  }
+})
+
+function render_msg(obj)
+{
+  console.log(obj)
+  return[
+          '<div class="col-lg-12">',
+            '<div class="card shadow bg-light">',
+              '<div class="card-body">',
+                '<div class="row">',
+                  '<div class="col-lg-2">',
+                    '<img id="profileImage" class="shadow-sm" src="' + obj.display_url + '" style="width:50px;height:50px;border-radius:50px 50px;"/>',
+                  '</div>',
+                  '<div class="col-lg-10">',
+                    '<span class="text-info" style="font-size:16px;">'+obj.name+'</span>',
+                    '<br>',
+                    '<span class="text-success" style="font-size:14px;">'+obj.datepost+' '+obj.timeStamp+'</span>',
+                  '</div>',
+                '</div>',
+                '<div class="row mt-2">',
+                  '<span class="text-dark" style="font-size:12px;">'+obj.msg+'</span>',
+                '</div>',
+              '</div>',
+            '</div>',
+          '</div>'
+  ].join("")
 }
                                           
                                           

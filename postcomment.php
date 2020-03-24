@@ -6,3 +6,20 @@
         </div>
     </div>
 </div>
+
+<div class="row text-center">
+    <div class="col-sm-12">
+        <div class="form-group text-center">
+            <textarea class="form-control" rows="5" id="comment_msg" placeholder="บอกให้คนอื่นรู้ว่าคุณกำลังทำอะไรอยู่"></textarea>
+        </div>
+    </div>
+</div>
+
+<div class="row text-center">
+    <div class="col-sm-12">
+        <button class="btn btn-outline-primary btn-block "  id="save_btn" onclick="post_msg()" style="border-radius:50px 50px;">
+            <i class="fas fa-paper-plane" aria-hidden="true"></i>
+            โพสต์
+        </button>
+    </div>
+</div>

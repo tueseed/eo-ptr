@@ -1,5 +1,5 @@
-var tech = firebase.database().ref('tech')
-var fb = firebase.database().ref('event')
+var msg = firebase.database().ref('message')
+
 $('#head_text').html('EO_REPORT')
 window.onload = function(e) {
                                 liff.init(function(data) {
@@ -15,8 +15,25 @@ window.onload = function(e) {
                                                             .then(function(profile){
                                                                                     $('#uNameInput').html(profile.displayName)
                                                                                     $('#profileImage').attr('src',profile.pictureUrl)
+                                                                                    localStorage.setItem('display_url',profile.pictureUrl)
+                                                                                    localStorage.setItem('displayname',profile.displayName)
                                                                                     }
                                                                 )
                                                         }
                                         )
+}
+
+function post_msg()
+{
+    var d = new Date()
+    var datepost = d.getDate() + '-' + d.getMonth() + '-' + d.getFullYear()
+    var timepost = d.getHours()+':' + d.getMinutes()
+    var msg_comment = $('#comment_msg').val()
+    msg.push({
+                'msg':msg_comment,
+                'name':localStorage.getItem('displayname'),
+                'display_url':localStorage.getItem('display_url'),
+                'timeStamp': timepost,
+                'datestamp':datepost
+            }).then(window.location.href='index.php?action=tech_job')
 }
