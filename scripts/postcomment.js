@@ -13,7 +13,6 @@ window.onload = function(e) {
                                                             liff
                                                             .getProfile()
                                                             .then(function(profile){
-                                                                                    $('#uNameInput').html(profile.displayName)
                                                                                     $('#profileImage').attr('src',profile.pictureUrl)
                                                                                     localStorage.setItem('display_url',profile.pictureUrl)
                                                                                     localStorage.setItem('displayname',profile.displayName)

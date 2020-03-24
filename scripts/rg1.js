@@ -100,16 +100,17 @@ function render_tech_card(techname,job)
 
 msg.on('value',function(snapshot){
   var comment = snapshot.val()
+  $('#msg_area').html('') 
   if(comment !== null)
   {
       var i = 0
-      $('#msg_area').html('') 
       while(Object.keys(comment)[i])
       {
         var msg_card = render_msg(Object.values(comment)[i])
+        $('#msg_area').append(msg_card) 
         i++
       }
-      $('#msg_area').append(msg_card) 
+
   }
 })
 
