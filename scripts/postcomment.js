@@ -1,5 +1,5 @@
 var msg = firebase.database().ref('message')
-
+var tech = firebase.database().ref('tech')
 $('#head_text').html('EO_REPORT')
 window.onload = function(e) {
                                 liff.init(function(data) {
@@ -13,7 +13,7 @@ window.onload = function(e) {
                                                             liff
                                                             .getProfile()
                                                             .then(function(profile){
-                                                                alert('cccccccc')                    
+                                                                                  
                                                                 $('#profileImage').attr('src',profile.pictureUrl)
                                                                                     localStorage.setItem('display_url',profile.pictureUrl)
                                                                                     localStorage.setItem('displayname',profile.displayName)
