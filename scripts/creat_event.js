@@ -109,7 +109,6 @@ function tbl_btn(value, row, index)
               '</button>',
               '<div class="dropdown-menu" aria-labelledby="change_status">',
                 '<a class="dropdown-item" href="#" onclick="change_status(' + "'" + value + "'" + ','+ "'P'" + ')">รอดำเนินการ</a>',
-                '<a class="dropdown-item" href="#" onclick="change_status(' + "'" + value + "'" + ','+ "'S'" + ')">จ่ายงานให้ช่าง</a>',
                 '<a class="dropdown-item" href="#" onclick="change_status(' + "'" + value + "'" + ','+ "'I'" + ')">กำลังดำเนินการ</a>',
                 '<a class="dropdown-item" href="#" onclick="change_status(' + "'" + value + "'" + ','+ "'F'" + ')">เสร็จงาน</a>',
               '</div>',
