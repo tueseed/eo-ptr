@@ -13,7 +13,8 @@ window.onload = function(e) {
                                                             liff
                                                             .getProfile()
                                                             .then(function(profile){
-                                                                                    $('#profileImage').attr('src',profile.pictureUrl)
+                                                                alert('cccccccc')                    
+                                                                $('#profileImage').attr('src',profile.pictureUrl)
                                                                                     localStorage.setItem('display_url',profile.pictureUrl)
                                                                                     localStorage.setItem('displayname',profile.displayName)
                                                                                     }
