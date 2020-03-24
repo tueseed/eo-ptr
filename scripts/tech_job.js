@@ -79,7 +79,7 @@ async function render_job_card(job_name,job_key)
                             '</div>',
                             '<div class="col-sm-6">',
                                 '<div class="float-right">',
-                                    '<button class="btn btn-primary"  id="save_btn" onclick="get_job(' + "'" + job_key + "'" + ')">',
+                                    '<button class="btn btn-primary"  id="save_btn" onclick="get_job()">',
                                         '<i class="fas fa-check-circle" aria-hidden="true"></i>',
                                         'รับงาน',
                                     '</button>',
@@ -95,7 +95,7 @@ async function render_job_card(job_name,job_key)
 
 function get_job(job_key)
 {
-    fb.child(job_key).update({'status':'I','tech':techname})
+    // fb.child(job_key).update({'status':'I','tech':techname})
     alert(job_key)
 }
 
