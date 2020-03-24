@@ -95,9 +95,12 @@ async function render_job_card(job_name,job_key)
 
 function get_job(job_key)
 {
-    alert(job_key)
     fb.child(job_key).update({'status':'I'})
-    
+}
+
+function re2post()
+{
+    window.location.href = 'index.php?action=postcomment'
 }
 
 fb.on('child_changed', function(snapshot){

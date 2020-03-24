@@ -1,7 +1,6 @@
 <div class="row text-center">
     <div class="col-sm-12">
         <div class="form-group text-center">
-            <h4 class="font-weight-bold">ยินดีต้อนรับ<br/><div id="uNameInput"></div></h4>
             <img id="profileImage" class="shadow-sm" style="width:100px;height:100px;border-radius:50px 50px;"/>
             <input type="hidden" id="uIdInput" name="uIdInput">
         </div>
@@ -15,6 +14,16 @@
             <input type="checkbox" onclick="change_tech_status()" id="check1" checked>
             <span class="slider round"></span>
         </label>
+
+    </div>
+</div>
+
+<div class="row text-center">
+    <div class="col-sm-12">
+        <button class="btn btn-outline-primary btn-block "  id="save_btn" onclick="re2post()" style="border-radius:50px 50px;">
+            <i class="fas fa-comment" aria-hidden="true"></i>
+            คุณกำลังทำอะไรอยู่
+        </button>
     </div>
 </div>
 

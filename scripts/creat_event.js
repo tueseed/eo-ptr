@@ -114,7 +114,7 @@ function tbl_btn(value, row, index)
               '</div>',
             '</div>',
             '<div class="btn-group dropleft">',
-              '<button id="tech_btn'+value+'" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="render_drop(' + "'" + value + "'" + ',' + "'" + row.place + "'" +  ')">',
+              '<button id="tech_btn'+value+'" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onclick="render_drop(' + "'" + value + "'" + ',' + "'" + row.place + "'" + ',' + "'" + row.techId + "'" +  ')">',
                 'ส่งงานให้ช่าง',
               '</button>',
               '<div class="dropdown-menu" aria-labelledby="tech" id="tech_dropdown' + value + '">',
@@ -155,7 +155,7 @@ function check_status(value, row, index)
 
 function send_job(key,techname,techid,place)
 {
-  fb.child(key).update({'status':'S','tech':techname})
+  fb.child(key).update({'status':'S','tech':techname,'techId':techid})
   tech.orderByChild('staffId').equalTo(techid).once('value',function (snapshot){
     var data = snapshot.val()
     console.log(Object.keys(data)[0])
@@ -170,7 +170,7 @@ function send_job(key,techname,techid,place)
 }) 
 }
 
-function render_drop(key,place)
+function render_drop(key,place,techId)
 {
  var dropdown=''
   tech.orderByChild('status').equalTo('on').on('value',function(snapshot){
@@ -180,10 +180,36 @@ function render_drop(key,place)
                                       
                                       while(Object.keys(data)[i])
                                       {
+                                        if(techId == '-')
+                                        {
                                         dropdown = '<a class="dropdown-item" href="#" onclick="send_job(' + "'" + key + "'" + ',' + "'" + Object.values(data)[i].techName + "'" + ',' + "'" + Object.values(data)[i].staffId + "'" + ',' + "'" + place + "'" +')">'+Object.values(data)[i].techName+'</a>'
                                         $('#tech_dropdown'+key).append(dropdown)
+                                      }
                                         i++
-                                      } 
+                                      }
+                                      $('#tech_dropdown'+key).append('<a class="dropdown-item" href="#" onclick="cancle_job(' + "'" + key + "'" + ')">ยกเลิกส่งงาน</a>') 
                                       
                                     })
+}
+
+async function cancle_job(job_key)
+{
+ var snapshot = await fb.child(job_key).once('value')
+ var value = snapshot.val()
+ console.log(value.techId)
+
+ var snapshot_tech = await tech.orderByChild('staffId').equalTo(value.techId).once('value')
+ var tech_value = snapshot_tech.val()
+ var tech_key = Object.keys(tech_value)[0]
+ console.log(tech_key)
+
+//  tech.child(Object.keys(tech_value)[0] + '/job/' + job_key).remove()
+var snapshot_job_intech = await firebase.database().ref('tech/' + tech_key + '/job').orderByChild('job_key').equalTo(job_key).once('value')
+var jobIntech = snapshot_job_intech.val()
+var jobIntechkey = Object.keys(jobIntech)[0]
+console.log(jobIntechkey)
+
+var del_data_ref = firebase.database().ref('tech/' + tech_key + '/job/' + jobIntechkey)
+del_data_ref.remove()
+fb.child(job_key).update({'status':'P','tech':'-','techId':'-'})
 }
