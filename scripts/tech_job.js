@@ -96,7 +96,7 @@ async function render_job_card(job_name,job_key)
 function get_job(job_key)
 {
     fb.child(job_key).update({'status':'I','tech':techname})
-    
+    alert(job_key)
 }
 
 fb.on('child_changed', function(snapshot){
