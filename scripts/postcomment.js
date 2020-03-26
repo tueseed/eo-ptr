@@ -16,7 +16,6 @@ window.onload = async function(e) {
     $('#profileImage').attr('src',profile.picture)
     localStorage.setItem('display_url',profile.picture)
     localStorage.setItem('displayname',profile.name)
-    alert(profile.name)
 }
 
 async function post_msg()
