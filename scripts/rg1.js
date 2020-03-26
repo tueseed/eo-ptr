@@ -154,6 +154,11 @@ function render_msg(obj)
                 '<div class="row mt-2">',
                   '<span class="text-dark" style="font-size:12px;"><i class="fas fa-comment" aria-hidden="true"></i> '+obj.msg+'</span>',
                 '</div>',
+                '<div class="row text-center mt-2">',
+                  '<div class="col-lg-12">',
+                    '<img class="card-img-top" src="./pic/logo-auc.png" alt="Card image cap" style="width:100px;height:100px;">',
+                '</div>',
+                '</div>',
               '</div>',
             '</div>',
           '</div>'

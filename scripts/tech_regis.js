@@ -3,7 +3,7 @@ var tech = firebase.database().ref('tech')
 $('#head_text').html('EO_REPORT')
 
 window.onload = function(e) {
-                                liff.init(function(data) {
+                                liff.init({liffId:'1653963133-E5eYJn42'}).then(function(data) {
                                                             localStorage.setItem('userId', data.context.userId)
                                                         
                                 liff

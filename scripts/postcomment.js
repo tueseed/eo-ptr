@@ -3,7 +3,7 @@ var tech = firebase.database().ref('tech')
 var images = firebase.storage().ref()
 $('#head_text').html('EO_REPORT')
 window.onload = function(e) {
-                                liff.init(function(data) {
+                                liff.init({liffId:'1653963133-E5eYJn42'}).then(function(data) {
                                                             localStorage.setItem('userId', data.context.userId)
                                                             tech.orderByChild('uid').equalTo(data.context.userId).once('value',function (snapshot){
                                                                 if(snapshot.val() == null)
