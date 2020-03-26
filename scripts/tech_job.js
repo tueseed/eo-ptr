@@ -15,7 +15,7 @@ window.onload = async function(e) {
     }
     $('#uNameInput').html(profile.name)
     $('#profileImage').attr('src',profile.picture)
-    alert(profile.name)
+    
 }
 
 function change_tech_status()

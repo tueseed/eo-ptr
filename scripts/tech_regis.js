@@ -10,10 +10,10 @@ window.onload = async function(e) {
                                 localStorage.setItem('userId', getconText.userId)
                                 $('#uNameInput').html(profile.name)
                                 $('#profileImage').attr('src',profile.picture)
-                                localStorage.setItem('display_url',profile.pictureUrl)
-                                alert(profile.name)
+                                localStorage.setItem('display_url',profile.picture)
+                                
                             } 
-                                       
+
 function regis_tech()
 {
     tech.orderByChild('staffId').equalTo($('#staffId').val()).once('value',function (snapshot){
