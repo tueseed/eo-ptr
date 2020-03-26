@@ -23,7 +23,8 @@ $('#head_text').html('EO_REPORT')
 window.onload = async function(e) {
     var init = await liff.init({liffId:'1653963133-E5eYJn42'})
     var getconText = await liff.getContext()
-    alert(getconText.userId)
+    var profile = await liff.getDecodedIDToken()
+    alert(profile.name)
     // liff.init(function(data) {
     //                             localStorage.setItem('userId', data.context.userId)
     //                             tech.orderByChild('uid').equalTo(data.context.userId).once('value',function (snapshot){
