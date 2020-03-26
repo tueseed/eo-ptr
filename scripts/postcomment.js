@@ -2,26 +2,21 @@ var msg = firebase.database().ref('message')
 var tech = firebase.database().ref('tech')
 var images = firebase.storage().ref()
 $('#head_text').html('EO_REPORT')
-window.onload = function(e) {
-                                liff.init(function(data) {
-                                                            localStorage.setItem('userId', data.context.userId)
-                                                            tech.orderByChild('uid').equalTo(data.context.userId).once('value',function (snapshot){
-                                                                if(snapshot.val() == null)
-                                                                {
-                                                                    window.location.href = 'index.php?action=tech_regis'
-                                                                }
-                                                                })
-                                                            liff
-                                                            .getProfile()
-                                                            .then(function(profile){
-                                                                                  
-                                                                $('#profileImage').attr('src',profile.pictureUrl)
-                                                                                    localStorage.setItem('display_url',profile.pictureUrl)
-                                                                                    localStorage.setItem('displayname',profile.displayName)
-                                                                                    }
-                                                                )
-                                                        }
-                                        )
+window.onload = async function(e) {
+    var init = await liff.init({liffId:'1653963133-E5eYJn42'})
+    var getconText = await liff.getContext()
+    var profile = await liff.getDecodedIDToken()
+
+    localStorage.setItem('userId', getconText.userId)
+    var check_userId = await this.tech.orderByChild('uid').equalTo(getconText.userId).once('value')
+    if(check_userId.val() == null)
+    {
+        window.location.href = 'index.php?action=tech_regis'
+    }
+    $('#profileImage').attr('src',profile.picture)
+    localStorage.setItem('display_url',profile.picture)
+    localStorage.setItem('displayname',profile.picture)
+    alert(profile.name)
 }
 
 async function post_msg()

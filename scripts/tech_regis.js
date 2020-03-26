@@ -2,26 +2,18 @@ var tech = firebase.database().ref('tech')
 
 $('#head_text').html('EO_REPORT')
 
-window.onload = function(e) {
-                                liff.init(function(data) {
-                                                            localStorage.setItem('userId', data.context.userId)
-                                                        
-                                liff
-                                    .getProfile()
-                                    .then(function(profile){
-                                                           
-                                                            $('#uNameInput').html(profile.displayName)
-                                                            $('#profileImage').attr('src',profile.pictureUrl)
-                                                            localStorage.setItem('display_url',profile.pictureUrl)
-                                                            }
-                                        )
-                                                            //tech.orderByChild('uid').equalTo(data.context.userId).once('value',function (snapshot){
-                                                                                                                                                    // console.log(snapshot.val())
-                                                                                                                                                    // })
-                                                        }
-                                        )
-                            }
-                
+window.onload = async function(e) {
+                                var init = await liff.init({liffId:'1653963133-E5eYJn42'})
+                                var getconText = await liff.getContext()
+                                var profile = await liff.getDecodedIDToken()
+                            
+                                localStorage.setItem('userId', getconText.userId)
+                                $('#uNameInput').html(profile.name)
+                                $('#profileImage').attr('src',profile.picture)
+                                localStorage.setItem('display_url',profile.pictureUrl)
+                                alert(profile.name)
+                            } 
+                                       
 function regis_tech()
 {
     tech.orderByChild('staffId').equalTo($('#staffId').val()).once('value',function (snapshot){
