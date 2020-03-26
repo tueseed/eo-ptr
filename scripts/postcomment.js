@@ -48,7 +48,7 @@ async function post_msg()
         mountainImagesRef.put(selectedFile[i])
         i++
     }
-    // window.location.href='index.php?action=tech_job'
+    window.location.href='index.php?action=tech_job'
 }
 
 $('#camera_btn').on('click', function(){$('#picture_post').trigger('click')})
