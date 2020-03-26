@@ -41,7 +41,7 @@ async function post_msg()
                 'picture_num':selectedFile.length
             })
     
-    function upload()
+    async function upload()
     {
         var i =0
         while(selectedFile[i])
@@ -51,7 +51,9 @@ async function post_msg()
             i++
         }
     }
-    upload().then(function (){window.location.href='index.php?action=tech_job'})
+    var up = await upload()
+    window.location.href='index.php?action=tech_job'
+
     
 }
 
