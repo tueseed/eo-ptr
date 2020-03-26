@@ -24,7 +24,17 @@ window.onload = async function(e) {
     var init = await liff.init({liffId:'1653963133-E5eYJn42'})
     var getconText = await liff.getContext()
     var profile = await liff.getDecodedIDToken()
+
+    localStorage.setItem('userId', getconText.userId)
+    var check_userId = await this.tech.orderByChild('uid').equalTo(getconText.userId).once('value')
+    if(check_userId.val() == null)
+    {
+        window.location.href = 'index.php?action=tech_regis'
+    }
+    $('#uNameInput').html(profile.name)
+    $('#profileImage').attr('src',profile.picture)
     alert(profile.name)
+
     // liff.init(function(data) {
     //                             localStorage.setItem('userId', data.context.userId)
     //                             tech.orderByChild('uid').equalTo(data.context.userId).once('value',function (snapshot){
