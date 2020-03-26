@@ -98,7 +98,7 @@ function render_tech_card(techname,job)
   
 }
 
-msg.on('value',function(snapshot){
+msg.limitToLast(5).once('value',function(snapshot){
   var comment = snapshot.val()
   $('#msg_area').html('') 
   if(comment !== null)
@@ -106,19 +106,39 @@ msg.on('value',function(snapshot){
       var i = 0
       while(Object.keys(comment)[i])
       {
+        if(i<4)
+        {
         var msg_card = render_msg(Object.values(comment)[i])
-        $('#msg_area').append(msg_card) 
+        // $('#msg_area').prepend(msg_card) 
+        $(msg_card).prependTo($('#msg_area')).slideDown('slow')
+        }
         i++
       }
 
   }
 })
 
+msg.endAt().limitToLast(1).on('child_added',function(snapshot){
+  var new_msg = snapshot.val()
+  console.log('new_msg')
+  var msg_card = render_msg(new_msg)  
+  $(msg_card).prependTo($('#msg_area')).slideDown('slow')
+  var element = $("div[name='row_card']")
+  console.log("elelel   "+element.length)
+  if(element.length > 5)
+  {
+    $("div[name='row_card']").last().remove()
+  }
+})
+
+
+
 function render_msg(obj)
 {
   console.log(obj)
   return[
-          '<div class="col-lg-12">',
+          
+          '<div class="col-lg-12 mt-2" style="display:none;" name="row_card">',
             '<div class="card shadow bg-light">',
               '<div class="card-body">',
                 '<div class="row">',
@@ -128,11 +148,11 @@ function render_msg(obj)
                   '<div class="col-lg-10">',
                     '<span class="text-info" style="font-size:16px;">'+obj.name+'</span>',
                     '<br>',
-                    '<span class="text-success" style="font-size:14px;">'+obj.datepost+' '+obj.timeStamp+'</span>',
+                    '<span class="text-success" style="font-size:14px;"><i class="fas fa-calendar-alt"></i> '+obj.datestamp+' <i class="fas fa-clock"></i>'+obj.timeStamp+'</span>',
                   '</div>',
                 '</div>',
                 '<div class="row mt-2">',
-                  '<span class="text-dark" style="font-size:12px;">'+obj.msg+'</span>',
+                  '<span class="text-dark" style="font-size:12px;"><i class="fas fa-comment" aria-hidden="true"></i> '+obj.msg+'</span>',
                 '</div>',
               '</div>',
             '</div>',

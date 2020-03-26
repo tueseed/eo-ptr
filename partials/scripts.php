@@ -25,6 +25,7 @@ var config = {
     authDomain: 'eo-ptr.firebaseapp.com',
     databaseURL: 'https://eo-ptr.firebaseio.com',
     projectId: 'eo-ptr',
+    storageBucket: "eo-ptr.appspot.com"
 };
 firebase.initializeApp(config);
 </script>

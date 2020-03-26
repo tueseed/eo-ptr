@@ -5,7 +5,7 @@
         <h6 class="card-title text-success mt-2">รายงานสถานการณ์ล่าสุด</h6>
       </div>
     </div>
-    <div class="row" id="msg_area">
+    <div class="row" id="msg_area" >
       <!-- <div class="col-lg-12">
         <div class="card shadow bg-light">
           <div class="card-body">

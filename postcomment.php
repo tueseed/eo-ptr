@@ -17,9 +17,20 @@
 
 <div class="row text-center">
     <div class="col-sm-12">
+        <button class="btn btn-outline-primary btn-block "  id="camera_btn"  style="border-radius:50px 50px;">
+            <i class="fas fa-camera"></i>
+        </button>
+    </div>
+</div>
+
+<div class="row text-center mt-2">
+    <div class="col-sm-12">
         <button class="btn btn-outline-primary btn-block "  id="save_btn" onclick="post_msg()" style="border-radius:50px 50px;">
             <i class="fas fa-paper-plane" aria-hidden="true"></i>
             โพสต์
         </button>
     </div>
 </div>
+
+<input id="picture_post" type="file" name="name" style="display: none;" accept="image/*" capture>
+        

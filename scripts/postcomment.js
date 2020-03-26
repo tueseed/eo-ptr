@@ -37,3 +37,5 @@ function post_msg()
                 'datestamp':datepost
             }).then(window.location.href='index.php?action=tech_job')
 }
+
+$('#camera_btn').on('click', function(){$('#picture_post').trigger('click')})
