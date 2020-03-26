@@ -51,7 +51,7 @@ async function post_msg()
             i++
         }
     }
-    upload().then(window.location.href='index.php?action=tech_job')
+    upload().then(function (){window.location.href='index.php?action=tech_job'})
     
 }
 
