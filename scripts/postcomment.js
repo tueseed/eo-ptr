@@ -40,9 +40,7 @@ async function post_msg()
                 'datestamp':datepost,
                 'picture_num':selectedFile.length
             })
-    console.log(msg_push.key)
     
-    var upload = await upload()
     function upload()
     {
         var i =0
@@ -53,7 +51,8 @@ async function post_msg()
             i++
         }
     }
-    window.location.href='index.php?action=tech_job'
+    upload().then(window.location.href='index.php?action=tech_job')
+    
 }
 
 $('#camera_btn').on('click', function(){$('#picture_post').trigger('click')})
