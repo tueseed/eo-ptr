@@ -32,5 +32,5 @@
     </div>
 </div>
 
-<input id="picture_post" type="file" name="name" style="display: none;" accept="image/*" capture>
+<input id="picture_post" type="file" name="name" style="display: none;" accept="image/*" capture multiple>
         
