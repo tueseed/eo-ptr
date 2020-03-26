@@ -40,18 +40,13 @@ async function post_msg()
                 'datestamp':datepost,
                 'picture_num':selectedFile.length
             })
-    
-    async function upload()
+    var i =0
+    while(selectedFile[i])
     {
-        var i =0
-        while(selectedFile[i])
-        {
-            var mountainImagesRef = images.child('images/' + msg_push.key + '/' + i + '.jpg')
-            mountainImagesRef.put(selectedFile[i])
-            i++
-        }
+        var mountainImagesRef = images.child('images/' + msg_push.key + '/' + i + '.jpg')
+        var up = await mountainImagesRef.put(selectedFile[i])
+        i++
     }
-    var up = await upload()
     window.location.href='index.php?action=tech_job'
 
     
