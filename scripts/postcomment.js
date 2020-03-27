@@ -32,13 +32,13 @@ async function post_msg()
                 'display_url':localStorage.getItem('display_url'),
                 'timeStamp': timepost,
                 'datestamp':datepost,
-                'picture_num':selectedFile.length
+                'picture_num':pic2up.length
             })
     var i =0
-    while(selectedFile[i])
+    while(pic2up[i])
     {
         var mountainImagesRef = images.child('images/' + msg_push.key + '/' + i + '.jpg')
-        var up = await mountainImagesRef.put(selectedFile[i])
+        var up = await mountainImagesRef.put(pic2up[i])
         i++
     }
     window.location.href='index.php?action=tech_job'
