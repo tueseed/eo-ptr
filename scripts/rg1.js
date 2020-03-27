@@ -6,12 +6,14 @@ fb.on('value',function(snapshot){
                                   var data = snapshot.val()
                                   var i =0
                                   var status_p = 0
+                                  var status_s = 0
                                   var status_i = 0
                                   var status_f = 0
                                   var data_for_tbl = []
                                   while(Object.keys(data)[i])
                                   {
                                     if(Object.values(data)[i].status == 'P'){status_p++}
+                                    else if(Object.values(data)[i].status == 'S'){status_s++}
                                     else if(Object.values(data)[i].status == 'I'){status_i++}
                                     else if(Object.values(data)[i].status == 'F'){status_f++}
                                     data_for_tbl.push(Object.values(data)[i])
@@ -20,6 +22,7 @@ fb.on('value',function(snapshot){
                                   $('#finnish_event').html(status_f)
                                   $('#inprocess_event').html(status_i)
                                   $('#pending_event').html(status_p)
+                                  $('#sending_event').html(status_s)
                                   $('#all_event').html(status_p+status_i+status_f)  
                                   var $table = $('#event_tbl')
                                   $table.bootstrapTable('refreshOptions', {
@@ -42,6 +45,11 @@ fb.on('child_changed', function(snapshot){
                                             {
                                               status_text = 'รอดำเนินการ'
                                               status_color = 'danger'
+                                            }
+                                            else if(newrequest.status == 'S')
+                                            {
+                                              status_text = 'จ่ายงานให้ช่าง'
+                                              status_color = 'info'
                                             }
                                             else if(newrequest.status == 'I')
                                             {
@@ -131,17 +139,22 @@ msg.endAt().limitToLast(1).on('child_added',function(snapshot){
 })
 
 
-async function render_msg(obj,msg_key)
+function render_msg(obj,msg_key)
 {
   var image_tag = ''
+  // if(obj.picture_num > 0)
+  // { 
+  //   for(i=0; i < obj.picture_num; i++)
+  //   {
+  //     var imageurl = await images.child('images/'+msg_key+'/' + i + '.jpg').getDownloadURL()
+  //     image_tag = image_tag + '<img class="shadow-sm" src="'+imageurl+'" alt="Card image cap" style="width:100px;height:100px;">'
+  //   }
+  // }
   if(obj.picture_num > 0)
   { 
-    for(i=0; i < obj.picture_num; i++)
-    {
-      var imageurl = await images.child('images/'+msg_key+'/' + i + '.jpg').getDownloadURL()
-      image_tag = image_tag + '<img class="shadow-sm" src="'+imageurl+'" alt="Card image cap" style="width:100px;height:100px;">'
-    }
+    image_tag = '<i class="fas fa-image nav-link" onclick="alert()"></i>'
   }
+
   var msg_card = [
           
           '<div class="col-lg-12 mt-2" style="display:none;" name="row_card">',
@@ -160,9 +173,9 @@ async function render_msg(obj,msg_key)
                 '<div class="row mt-2">',
                   '<span class="text-dark" style="font-size:12px;"><i class="fas fa-comment" aria-hidden="true"></i> '+obj.msg+'</span>',
                 '</div>',
-                '<div class="row mt-2">',
+                '<div class="row text-right mt-2">',
                   '<div class="col-lg-12">',
-                    image_tag,
+                  image_tag,
                 '</div>',
                 '</div>',
               '</div>',
