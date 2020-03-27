@@ -48,21 +48,44 @@ async function post_msg()
 
 $('#camera_btn').on('click', function(){$('#picture_post').trigger('click')})
 
+var pic2up = []
+$(document).ready(function(){
+$('#picture_post').change(function(e){
+                            
+                                        var selectedFile = document.getElementById('picture_post')         
+                                        // pic2up.push(document.getElementById('picture_post').files)
+                                        // pic2up.concat(document.getElementById('picture_post').files)
+                                        append_picture(selectedFile)
+                                        console.log(pic2up)
+                                        // var i = 0
+                                        // while(pic2up[0][i])
+                                        // {
+                                        //     // var mountainImagesRef = images.child('images/msg001/' + i + '.jpg')
+                                        //     // mountainImagesRef.put(selectedFile[i])
+                                        //     // append_picture(pic2up[i])
+                                        //     // console.log(i)
+                                        //     i++
+                                        // }
+                                        // images.child('images/msg001/1.jpg').on.getDownloadURL().then(function(url) {console.log(url)})
+                                        
+                                        })
+})
 
-// $(document).ready(function(){
-// $('#picture_post').change(function(e){
-                                        
-                                       
-//                                         var selectedFile = document.getElementById('picture_post').files;
-//                                         console.log(selectedFile[0])
-//                                         var i =0
-//                                         while(selectedFile[i])
-//                                         {
-//                                             var mountainImagesRef = images.child('images/msg001/' + i + '.jpg')
-//                                             mountainImagesRef.put(selectedFile[i])
-//                                             i++
-//                                         }
-//                                         images.child('images/msg001/1.jpg').on.getDownloadURL().then(function(url) {console.log(url)})
-                                        
-//                                         })
-// })
+function append_picture(file)
+{
+    // console.log(file.files)
+    if (file.files && file.files[0])
+    {
+        var i = 0
+        while(file.files[i]){
+        pic2up.push(file.files[i])
+        var fr = new FileReader()
+        fr.onload = function(e) {
+            // console.log(e)
+            $('#pic_to_upload').append('<img class="card-img-top" src="' + e.target.result + '" alt="Card image cap" style="width:100px;height:100px;"></img>')
+        }
+        fr.readAsDataURL(file.files[i])
+        i++
+    }
+    }
+}
