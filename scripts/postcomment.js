@@ -34,6 +34,17 @@ async function post_msg()
                 'datestamp':datepost,
                 'picture_num':pic2up.length
             })
+$.blockUI({
+            message: '<div class="spinner-border text-primary display-4" style="width: 4rem; height: 4rem;" role="status"><span class="sr-only">Loading...</span></div><br/><h5 class="font-weight-bold text-pea">กำลังโพสต์..</h5>',
+            overlayCSS : { 
+                            backgroundColor: '#ffffff',
+                            opacity: 1
+                        },
+                css : {
+                  opacity: 1,
+                  border: 'none',
+                }
+              })
     var i =0
     while(pic2up[i])
     {
@@ -41,6 +52,7 @@ async function post_msg()
         var up = await mountainImagesRef.put(pic2up[i])
         i++
     }
+    $.unblockUI()
     window.location.href='index.php?action=tech_job'
 }
 
