@@ -42,8 +42,6 @@ async function post_msg()
         i++
     }
     window.location.href='index.php?action=tech_job'
-
-    
 }
 
 $('#camera_btn').on('click', function(){$('#picture_post').trigger('click')})
@@ -81,7 +79,6 @@ function append_picture(file)
         pic2up.push(file.files[i])
         var fr = new FileReader()
         fr.onload = function(e) {
-            // console.log(e)
             $('#pic_to_upload').append('<img class="card-img-top" src="' + e.target.result + '" alt="Card image cap" style="width:100px;height:100px;"></img>')
         }
         fr.readAsDataURL(file.files[i])
