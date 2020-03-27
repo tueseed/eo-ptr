@@ -1,6 +1,7 @@
 var fb = firebase.database().ref('event')
 var tech = firebase.database().ref('tech')
 var msg = firebase.database().ref('message')
+var images = firebase.storage().ref()
 fb.on('value',function(snapshot){                         
                                   var data = snapshot.val()
                                   var i =0
@@ -108,9 +109,8 @@ msg.limitToLast(5).once('value',function(snapshot){
       {
         if(i<4)
         {
-        var msg_card = render_msg(Object.values(comment)[i])
-        // $('#msg_area').prepend(msg_card) 
-        $(msg_card).prependTo($('#msg_area')).slideDown('slow')
+        render_msg(Object.values(comment)[i],Object.keys(comment)[i])
+        // $(msg_card).prependTo($('#msg_area')).slideDown('slow')
         }
         i++
       }
@@ -121,10 +121,9 @@ msg.limitToLast(5).once('value',function(snapshot){
 msg.endAt().limitToLast(1).on('child_added',function(snapshot){
   var new_msg = snapshot.val()
   console.log('new_msg')
-  var msg_card = render_msg(new_msg)  
-  $(msg_card).prependTo($('#msg_area')).slideDown('slow')
+  render_msg(new_msg,snapshot.key)  
+  // $(msg_card).prependTo($('#msg_area')).slideDown('slow')
   var element = $("div[name='row_card']")
-  console.log("elelel   "+element.length)
   if(element.length > 5)
   {
     $("div[name='row_card']").last().remove()
@@ -132,11 +131,18 @@ msg.endAt().limitToLast(1).on('child_added',function(snapshot){
 })
 
 
-
-function render_msg(obj)
+async function render_msg(obj,msg_key)
 {
-  console.log(obj)
-  return[
+  var image_tag = ''
+  if(obj.picture_num > 0)
+  { 
+    for(i=0; i < obj.picture_num; i++)
+    {
+      var imageurl = await images.child('images/'+msg_key+'/' + i + '.jpg').getDownloadURL()
+      image_tag = image_tag + '<img class="shadow-sm" src="'+imageurl+'" alt="Card image cap" style="width:100px;height:100px;">'
+    }
+  }
+  var msg_card = [
           
           '<div class="col-lg-12 mt-2" style="display:none;" name="row_card">',
             '<div class="card shadow bg-light">',
@@ -146,7 +152,7 @@ function render_msg(obj)
                     '<img id="profileImage" class="shadow-sm" src="' + obj.display_url + '" style="width:50px;height:50px;border-radius:50px 50px;"/>',
                   '</div>',
                   '<div class="col-lg-10">',
-                    '<span class="text-info" style="font-size:16px;">'+obj.name+'</span>',
+                    '<span class="text-info" style="font-size:16px;">'+obj.name+ '</span>',
                     '<br>',
                     '<span class="text-success" style="font-size:14px;"><i class="fas fa-calendar-alt"></i> '+obj.datestamp+' <i class="fas fa-clock"></i>'+obj.timeStamp+'</span>',
                   '</div>',
@@ -154,15 +160,17 @@ function render_msg(obj)
                 '<div class="row mt-2">',
                   '<span class="text-dark" style="font-size:12px;"><i class="fas fa-comment" aria-hidden="true"></i> '+obj.msg+'</span>',
                 '</div>',
-                '<div class="row text-center mt-2">',
+                '<div class="row mt-2">',
                   '<div class="col-lg-12">',
-                    '<img class="card-img-top" src="./pic/logo-auc.png" alt="Card image cap" style="width:100px;height:100px;">',
+                    image_tag,
                 '</div>',
                 '</div>',
               '</div>',
             '</div>',
           '</div>'
   ].join("")
+
+  $(msg_card).prependTo($('#msg_area')).slideDown('slow')
 }
                                           
                                           

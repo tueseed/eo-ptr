@@ -22,7 +22,7 @@
     </style>
   </head>
 
-  <body>
+  <body class="bg-dark">
     <header class="pb-3">
       <!-- Image and text -->
       <nav class="shadow-sm navbar navbar-light bg-white">
