@@ -20,7 +20,7 @@
 
 <div class="row text-center">
     <div class="col-sm-12">
-        <button class="btn btn-outline-primary btn-block "  id="save_btn" onclick="re2post()" style="border-radius:50px 50px;">
+        <button class="btn btn-outline-primary btn-block bg-white"  id="save_btn" onclick="re2post()" style="border-radius:50px 50px;">
             <i class="fas fa-comment" aria-hidden="true"></i>
             คุณกำลังทำอะไรอยู่
         </button>
